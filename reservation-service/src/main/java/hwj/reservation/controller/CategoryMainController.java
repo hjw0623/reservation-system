@@ -1,5 +1,6 @@
 package hwj.reservation.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,13 +19,13 @@ import hwj.reservation.service.CategoryService;
 
 @Controller
 @RequestMapping("/category")
-public class MainController {
+public class CategoryMainController {
 	 @Autowired
 	 CategoryService categoryService;
-	 private final Logger log = LoggerFactory.getLogger(MainController.class);
+	 private final Logger log = LoggerFactory.getLogger(CategoryMainController.class);
 
 	@GetMapping
-	public String readList(HttpServletRequest request){
+	public String readList(HttpServletRequest request) throws SQLException{
 		List<Category> cList = categoryService.getAllList();
 		
 		if(cList ==null){
@@ -32,7 +33,7 @@ public class MainController {
 		}else{
 			log.info("cList");
 		}
-		 request.setAttribute("categoryList", cList);;
+		 request.setAttribute("categoryList", cList);
 		
 		 return "/index";
 	}	

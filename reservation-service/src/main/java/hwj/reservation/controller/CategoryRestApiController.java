@@ -1,5 +1,6 @@
 package hwj.reservation.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,11 +28,11 @@ import hwj.reservation.service.CategoryService;
 import hwj.reservation.service.CategoryServiceImpl;
 
 @Controller
-@RequestMapping("/category/api")
-public class CategoryController {
+@RequestMapping({"/category/api"})
+public class CategoryRestApiController {
 	@Autowired
 	CategoryService categoryService;
-	 private final Logger log = LoggerFactory.getLogger(CategoryController.class);
+	 private final Logger log = LoggerFactory.getLogger(CategoryRestApiController.class);
 
 	@PostMapping
 	public String create(@ModelAttribute Category category){
@@ -44,14 +45,13 @@ public class CategoryController {
 			if(resultCategory==null){
 				log.info("null...");
 			}
-			
 			return "redirect:/category";
 		}
 	}
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public String delete(@PathVariable Integer id){
+	public String delete(@PathVariable Integer id) throws SQLException{
 		Category check = categoryService.getById(id);
 		//check validation
 		if(check!=null){
@@ -63,7 +63,7 @@ public class CategoryController {
 	//update
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	void update(@PathVariable Integer id, @RequestBody Category category){
+	void update(@PathVariable Integer id, @RequestBody Category category) throws SQLException{
 		//check validation
 		Category check =  categoryService.getById(category.getId());
 		if(check!=null){
@@ -71,5 +71,8 @@ public class CategoryController {
 			log.info("category updated");
 		}
 	}
+	
+	
+	
 	
 }

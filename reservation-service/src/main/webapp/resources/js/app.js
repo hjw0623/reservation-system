@@ -1,6 +1,6 @@
 (function (window){
 	var apiURL = '/category/api';
-	var URL = '/category';
+	//var URL = '/category';
 	
 	function CategoryObj(id, name){
 		this.id = id;
@@ -15,15 +15,18 @@
 		//console.log(category);
 		if(category.name==""||category.name.length<2){
 			alert("수정할 이름을 최소 2자 입력해주세요");
+			return; //retur 시 아래 조건문이 필요가 없다.
 		}
 		if(category.name!=""&& category["name"].length>=2){
-			var jsonData = JSON.stringify(category);
-			doUpdate(updateUrl, category, jsonData);
+			// var jsonData = JSON.stringify(category); //응집성 측면에서 doUpdate안에 넣어주자.
+			//doUpdate(updateUrl, category);
 		}
+		doUpdate(updateUrl, category);
 	})
 	
 	//update function
-	function doUpdate(updateUrl, category, jsonData){
+	function doUpdate(updateUrl, category){
+		var jsonData = JSON.stringify(category);
 		$.ajax({
 			method:"PUT",
 			url:updateUrl,

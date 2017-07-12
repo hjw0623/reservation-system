@@ -3,7 +3,7 @@ package hwj.reservation.dao;
 public class CategorySqls {
 	//Select All
 	static final String SELECT_ALL_CATEGORY = 
-			"SELECT id, name FROM category ";
+			"SELECT id, name FROM category order by id asc";
 	//SELECT BY ID
 	static final String SELECT_BY_CID =
 			"SELECT id, name FROM category WHERE id = :id";
@@ -23,5 +23,7 @@ public class CategorySqls {
 	//DELETE BY ID
 	static final String DELETE_BY_CID=
 			"DELETE FROM category WHERE id= :id";
+	
+	
 
 }

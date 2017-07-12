@@ -1,5 +1,6 @@
 package hwj.reservation.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,27 +21,32 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 	
 	@Override
-	public List<Category> getAllList() {
+	@Transactional(readOnly=true)
+	public List<Category> getAllList() throws SQLException {
 		return this.dao.selectAllCategory();
 	}
 
 	@Override
-	public Category getByName(String name) {
+	@Transactional(readOnly=true)
+	public Category getByName(String name) throws SQLException {
 		return this.dao.selectByName(name);
 	}
 
 	@Override
-	public Category getById(Integer id) {
+	@Transactional(readOnly=true)
+	public Category getById(Integer id) throws SQLException {
 		return this.dao.selectById(id);
 	}
 
 	@Override
+	@Transactional(readOnly=false)
 	public boolean update(Category category) {
 		int affected = dao.update(category);
 		return affected !=0;
 	}
 
 	@Override
+	@Transactional(readOnly=false)
 	public boolean deleteById(Integer id) {
 		int affected = dao.deleteById(id);
 		
@@ -48,6 +54,7 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
+	@Transactional(readOnly=false)
 	public boolean deleteByName(String name) {
 		int affected = dao.deleteByName(name);
 		return affected ==1;

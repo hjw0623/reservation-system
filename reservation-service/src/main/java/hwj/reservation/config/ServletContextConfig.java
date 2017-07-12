@@ -20,7 +20,6 @@ public class ServletContextConfig extends WebMvcConfigurerAdapter{
 		viewResolver.setViewClass(JstlView.class);
 		viewResolver.setPrefix("/WEB-INF/views");
 		viewResolver.setSuffix(".jsp");
-		
 		return viewResolver;
 	}
 	//리소스에 대한 설정 추가

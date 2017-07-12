@@ -1,6 +1,7 @@
 package hwj.reservation.dao;
 
 
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -37,18 +38,18 @@ public class CategoryDao {
 	}
 	
 	//select All
-	public List<Category> selectAllCategory(){
+	public List<Category> selectAllCategory() throws SQLException {
 		Map<String, Object> params = Collections.emptyMap();
 		return jdbc.query(CategorySqls.SELECT_ALL_CATEGORY, params, rowMapper);
 	}
 	//SELECT BY ID
-	public Category selectById(Integer id){
+	public Category selectById(Integer id) throws SQLException{
 		Map<String, Object>params = new HashMap<>();
 		params.put("id", id);
 		return jdbc.queryForObject(CategorySqls.SELECT_BY_CID, params, rowMapper);
 	}
 	//SELECT BY NAME
-	public Category selectByName(String name){
+	public Category selectByName(String name) throws SQLException{
 		Map<String, Object>params = new HashMap<>();
 		params.put("name", name);
 		return jdbc.queryForObject(CategorySqls.SELECT_BY_CNAME, params, rowMapper);
