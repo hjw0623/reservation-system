@@ -91,7 +91,7 @@
 	
 	//예약 버튼 누르면 main페이지 이동
 	$('.logo').on("click", ".ico_bk_logo", function(e){
-		getCategoryList(categoryUrl);
+		location.href="/";
 	});
 	
 	//네이버 버튼 
