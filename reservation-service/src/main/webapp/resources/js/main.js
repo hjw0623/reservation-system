@@ -99,6 +99,12 @@
 		location.href="https://m.naver.com";
 	});
 	
+	$('.visual_img').on("click",".event_txt_tit", function(e){
+		location.href="/detail";
+	});
+	$('.visual_img').on("click",".event_txt_dsc", function(e){
+		location.href="/detail";
+	});
 	//my reservationPage
 	$('.header_tit ').on("click", ".btn_my", function(e){
 		location.href="/my";
