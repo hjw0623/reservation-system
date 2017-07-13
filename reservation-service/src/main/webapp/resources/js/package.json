@@ -1,0 +1,21 @@
+{
+  "name": "js",
+  "version": "1.0.0",
+  "description": "mainpage module package",
+  "main": [
+    "main.js",
+    "mainbottom.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jquery": "^3.2.1",
+    "underscore": "^1.8.3"
+  },
+  "dependencies": {
+    "handlebars": "^4.0.10"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "reservation-system",
+  "version": "1.0.0",
+  "description": "reservation-system js package",
+  "main": [
+    "main.js",
+    "mainbottom.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hjw0623/reservation-system.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hjw0623/reservation-system/issues"
+  },
+  "homepage": "https://github.com/hjw0623/reservation-system#readme",
+  "dependencies": {
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "jquery": "^3.2.1"
+  }
+}
