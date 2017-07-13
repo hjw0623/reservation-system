@@ -11,10 +11,7 @@ var mainCategory=(function (spec){
 	var len;
 	
 	plusSlides = function () {
-		  console.log("prev Idx :"+slideIndex);
-
 		  slideIndex +=1;
-		//  console.log(slideIndex);
 		  if(slideIndex > listSize){
 			  slideIndex =1;
 		  }
@@ -22,17 +19,11 @@ var mainCategory=(function (spec){
 			  slideIndex=listSize;
 		  }
 		  len = ((slideIndex-1)*size);
-		  console.log("next Idx :"+slideIndex);
-		  console.log("len :"+len);
-
 		  slideShow(len);
 	};
 	
 	// button slide
 	manualSlide = function (n) {
-		console.log("n: "+ slideIndex);
-		console.log("len: "+len);
-		
 		  slideIndex +=n;
 		  if(slideIndex > listSize){
 			  slideIndex =1;
@@ -57,29 +48,23 @@ var mainCategory=(function (spec){
 		startSlide : function (){
 			autoSlide();
 		},
-		
 		getCategoryList : function (getListUrl){
 			$.ajax({
 				method:"GET",
 				url:getListUrl,
 				success:function(data){				
-					var categoryNum = 0;
-					//console.log(data);
-					$.each( data, function(){
-						var item = '<li class="item" data-category="'+data[categoryNum].id+'">'
-								+'<a class="anchor">'
-								+'<span>'+data[categoryNum].name+'</span></a>'
-								+'</li>';
-						$('.section_event_tab > ul').append(item);
-						categoryNum++;
-					});
+					var source = $("#category-entry-template").html();
+					var template=Handlebars.compile(source);
+					for(var i=0; i<data.length; i++){
+						var obj=template(data[i]);
+						$('.section_event_tab > ul').append(obj);
+					}
 					$('.event_tab_lst li:last-child').find('.anchor').addClass('last');
 				},
 			});
 		},
-	
 		//버튼 이벤트 처리 
-		next :  function(){ $('.btn_nxt_e').off("click").on("click",  function(event){	
+		nextBtn :  function(){ $('.btn_nxt_e').off("click").on("click",  function(event){	
 				event.stopPropagation();
 				clearInterval(timer);
 				manualSlide(1);
@@ -87,7 +72,7 @@ var mainCategory=(function (spec){
 			}).bind(slideIndex);
 		},
 		
-		prev : function(){ $('.btn_pre_e').off("click").on("click",  function(event){
+		prevBtn : function(){ $('.btn_pre_e').off("click").on("click",  function(event){
 				event.stopPropagation();
 				clearInterval(timer);
 				manualSlide(-1);
@@ -115,9 +100,9 @@ var mainCategory=(function (spec){
 			location.href="/my";
 		})
 	};
-})(spec);
+})();
 
 mainCategory.getCategoryList(spec.categoryUrl);
 mainCategory.startSlide();
-mainCategory.next();
-mainCategory.prev();
+mainCategory.nextBtn();
+mainCategory.prevBtn();

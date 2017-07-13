@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
 
@@ -110,8 +111,11 @@
         </div>
     </footer>
    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  -->
+   <!-- jquery npm -->
     <script src="resources/js/node_modules/jquery/dist/jquery.js"></script>
-   <!-- handlebar -->
+   <!-- handlebar npm -->
+   <jsp:include page="include/handlebarsjs-template-html.jsp" flush="false" />
+   <script src="resources/js/node_modules/handlebars/dist/handlebars.js"></script>"
 	<script src="resources/js/main.js"></script>
     <script src="resources/js/mainbottom.js"></script>
   
