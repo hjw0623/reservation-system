@@ -70,6 +70,18 @@ var categoryProductList = (function (spec, cId, number){
 			num+=10;	
 			categoryProductList.getProductListByCategory(spec2.getPlistUrl, categoryId, num); 
 		}).bind(num),
+		
+		seeMoreScroll : $(window).scroll(function(){
+			var $current = $(window);
+			var $mazinoLine =$(document).height();
+			if($mazinoLine <= $current.height()+$current.scrollTop()){
+				num+=10;	
+				console.log("scroll");
+				categoryProductList.getProductListByCategory(spec2.getPlistUrl, categoryId, num); 
+			}
+		}),
+		
+		
 	}
 })(spec2);
 

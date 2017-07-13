@@ -115,7 +115,7 @@
     <script src="resources/js/node_modules/jquery/dist/jquery.js"></script>
    <!-- handlebar npm -->
    <jsp:include page="include/handlebarsjs-template-html.jsp" flush="false" />
-   <script src="resources/js/node_modules/handlebars/dist/handlebars.js"></script>"
+   <script src="resources/js/node_modules/handlebars/dist/handlebars.js"></script>
 	<script src="resources/js/main.js"></script>
     <script src="resources/js/mainbottom.js"></script>
   
