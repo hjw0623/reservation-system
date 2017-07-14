@@ -88,17 +88,31 @@ var mainCategory=(function (spec){
 		naverLogoButton : $('.logo').on("click", ".ico_n_logo",function(e){
 			location.href="https://m.naver.com";
 		}),
-		
+		//프로모션에 있는거..일단 default페이지로 이동한다. 
 		detailButton : $('.visual_img').on("click",".event_txt_tit", function(e){
-			location.href="/detail";
+			console.log(location);
+			console.log(location.href);
+			console.log(document.URL);
+			location.href="/detaildefault";
 		}),
 		detailButton2 :  $('.visual_img').on("click",".event_txt_dsc", function(e){
-			location.href="/detail";
+			console.log(location);
+			location.href="/detaildefault";
+			
 		}),
+		
 		//my reservationPage
 		myReservButton : $('.header_tit ').on("click", ".btn_my", function(e){
+			console.log(document.URL);
 			location.href="/my";
-		})
+		}),
+		//click list product 
+		bizesButton :  $('.wrap_event_box').on("click", ".item_book", function(e){
+			console.log(location.href);
+			var productId = $(this).attr('clickId');
+			console.log(productId);
+			location.href="/booking/bizes/"+productId;
+		}),
 	};
 })();
 

@@ -6,10 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/my")
-public class MyReservationPageController {
+@RequestMapping("/detaildefault")
+public class ProductDetailDefaultController {
 	@GetMapping
-	public String loadMyReservation( Model model){
-		 return "/myreservation";
+	public String loadDetailPage( Model model){
+		 return "/detaildefault";
 	}	
+	
 }
+
+

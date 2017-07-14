@@ -24,11 +24,13 @@ var categoryProductList = (function (spec, cId, number){
 					var categoryNum = 0;
 					$('.lst_event_box:eq(0)').empty();
 					$('.lst_event_box:eq(1)').empty();
+					
 					if(data.length>0){
 						var source = $("#category-product-entry-template").html();
 						var template=Handlebars.compile(source);
 						for(var i=0; i<data.length; i++){
 							var obj=template(data[i]);
+							//console.log(obj);
 							if(i%2===0){
 								$('.lst_event_box:eq(0)').append(obj);
 							}else{
@@ -74,9 +76,9 @@ var categoryProductList = (function (spec, cId, number){
 		seeMoreScroll : $(window).scroll(function(){
 			var $current = $(window);
 			var $mazinoLine =$(document).height();
-			if($mazinoLine <= $current.height()+$current.scrollTop()){
+			if($mazinoLine - $current.height() <= $current.scrollTop()){
 				num+=10;	
-				console.log("scroll");
+				//console.log("scroll");
 				categoryProductList.getProductListByCategory(spec2.getPlistUrl, categoryId, num); 
 			}
 		}),
