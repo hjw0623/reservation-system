@@ -281,7 +281,7 @@
 	function manualSlide(n) {
 
 		slideIndex +=n;
-		
+		//commit test
 		if(slideIndex > listSize){
 			  slideIndex =1;
 		}
