@@ -495,6 +495,7 @@
 
 	function naverMapApi(){ 
 		var tmpAddr = $('.detail_location').find('.store_addr_bold').text();
+		$('.detail_location').find('.store_location').attr('href', 'http://map.naver.com/?query='+tmpAddr);
 		console.log(tmpAddr);
 		var map = new naver.maps.Map('map');
 	  	var myaddress = tmpAddr;  // 도로명 주소나 지번 주소만 가능 (건물명 불가!!!!)
