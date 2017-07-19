@@ -238,7 +238,7 @@
  		});
  	};
 	getProductDetail(productDetailUrl, id);
-
+	
 	//display_info
 	function getDisplayInfo(getDisplayInfoUrl, id){
 		$.ajax({
@@ -253,6 +253,7 @@
 				$('.group_btn_goto').find('.btn_goto_tel').attr('href', "tel:"+data.tel);
 				$('.group_btn_goto').find('.btn_goto_mail').attr('href', "mailto:"+data.email);
 				//오시는길 정보
+				//var myaddress  = data.placeStreet;
 				$('.detail_location').find('p.store_addr.store_addr_bold').text(data.placeStreet);
 				$('.detail_location').find('span.addr_old_detail').text(data.placeLot);
 				$('.detail_location').find('p.store_addr.addr_detail').text(data.placeName);
@@ -281,7 +282,6 @@
 	$('.section_btn').on("click", '.bk_btn', function(){
 		var salesFlag = $('.section_btn').find('.bk_btn').data().sales;
 		//판매시점 지남여부 
-		console.log(salesFlag);
 		var current = new Date();
 		var Year = current.getFullYear();
 		var Month = current.getMonth()+1;
@@ -313,6 +313,7 @@
 		$('.info_tab_lst ._path').find('.anchor').addClass('active');
 		$('.detail_area_wrap').addClass('hide');
 		$('.detail_location').removeClass('hide');
+		naverMapApi();
 		event.preventDefault();
 		event.stopPropagation();
 	});
@@ -332,8 +333,6 @@
 			success:function(data){	
 				//console.log(data.length);
 				var idx = 0;
-				console.log("date length");
-				console.log(data);
 				$.each(data, function(){
 					var userNameInitial = data[idx].userName;
 					userNameInitial = userNameInitial.substring(0,4)+"****";
@@ -373,6 +372,8 @@
 
 					idx++;
 				});
+
+			//	naverMapApi();
 			}
 		});
 	};
@@ -384,9 +385,7 @@
 	var numOfCommentImage = 0;
 	function wrap(){
 		commentSlideIndex =0;
-		console.log("imgName array");
-		console.log(imgNames);
-		console.log("wrap");
+		
 		var popUpHeight = $(document).height();
 		var popUpWidth = $(document).width();
 		var contentWidth = popUpWidth*0.8;
@@ -396,7 +395,6 @@
 		//내부 
 		$('.pop_up_content').css({"width":"414px", "height":contentHeight,"display":"block"});
 		var numOfComment = $('.thumb').attr('data-idx-num');
-		console.log(numOfComment);
 		numOfCommentImage = imgNames[numOfComment].length;
 		$('.pop_up_content').empty();  
 		var imgList = '<div class="section_visual ">'
@@ -425,11 +423,9 @@
 		$('.pop_up_content').append(imgList);                 
 		$('.container_visual').css({"width":414*numOfCommentImage+"px"});
 
-		console.log(numOfCommentImage);
-		console.log(imgNames[numOfComment]);
 		var localIdx=0;
 		$.each( imgNames[numOfComment], function(){
-			console.log(imgNames[numOfComment][localIdx]);
+			//console.log(imgNames[numOfComment][localIdx]);
 			var imgSlide = '<li class="item" style="width: 414px;">' 
 							+'<img alt="" class="img_thumb" src="'
 							+'/imgresources'+imgNames[numOfComment][localIdx] +'">'
@@ -466,9 +462,9 @@
 			  commentSlideIndex=1;
 		}
 		var size = $('.pop_up_content .group_visual').outerWidth();
-		console.log("size:"+size);
+		//console.log("size:"+size);
 		var len = ((commentSlideIndex-1)*size);
-		console.log("len :"+len);
+		//console.log("len :"+len);
 		//console.log(size);
 		slideShow2(len);	  
 	};
@@ -479,9 +475,6 @@
 
 
 	$('.section_review_list').on("click",'.thumb', function(e){
-		console.log("this");
-		console.log(this);
-		console.log("dd");
 		e.preventDefault();
 		wrap();
 
@@ -497,7 +490,46 @@
 		$('.pop_up_content').hide();
 	});
 
+	//===============
+	//naver Map API
 
+	function naverMapApi(){ 
+		var tmpAddr = $('.detail_location').find('.store_addr_bold').text();
+		console.log(tmpAddr);
+		var map = new naver.maps.Map('map');
+	  	var myaddress = tmpAddr;  // 도로명 주소나 지번 주소만 가능 (건물명 불가!!!!)
+	    naver.maps.Service.geocode({address: myaddress}, function(status, response) {
+	          if (status !== naver.maps.Service.Status.OK) {
+	              return alert(myaddress + '의 검색 결과가 없거나 기타 네트워크 에러');
+	          }
+	          var result = response.result;
+	          // 검색 결과 갯수: result.total
+	          // 첫번째 결과 결과 주소: result.items[0].address
+	          // 첫번째 검색 결과 좌표: result.items[0].point.y, result.items[0].point.x
+	          var myaddr = new naver.maps.Point(result.items[0].point.x, result.items[0].point.y);
+	          map.setCenter(myaddr); // 검색된 좌표로 지도 이동
+	          // 마커 표시
+	          var marker = new naver.maps.Marker({
+	            position: myaddr,
+	            map: map
+	          });
+	          // 마커 클릭 이벤트 처리
+	          naver.maps.Event.addListener(marker, "click", function(e) {
+	            if (infowindow.getMap()) {
+	                infowindow.close();
+	            } else {
+	                infowindow.open(map, marker);
+	            }
+	          });
+	          // 마크 클릭시 인포윈도우 오픈
+	          var infowindow = new naver.maps.InfoWindow({
+	              content: '<h4> [네이버 개발자센터]</h4><a href="https://developers.naver.com" target="_blank"><img src="https://developers.naver.com/inc/devcenter/images/nd_img.png"></a>'
+	          });
+	      });
+	};
+
+
+ 
 
 
 //=====================================================================================
