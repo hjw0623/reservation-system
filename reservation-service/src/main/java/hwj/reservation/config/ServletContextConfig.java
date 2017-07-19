@@ -34,6 +34,7 @@ public class ServletContextConfig extends WebMvcConfigurerAdapter{
 		//   webapp/resources 경로를 의미
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/"); 	
 		registry.addResourceHandler("/imgresources/**").addResourceLocations(staticResouceLocation); 
+
 	}
 	
 	@Bean

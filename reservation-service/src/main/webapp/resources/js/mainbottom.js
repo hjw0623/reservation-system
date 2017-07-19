@@ -92,7 +92,7 @@ var categoryProductList = (function (spec, cId, number){
 		
 		
 	}
-})(spec2);
+})();
 
 categoryProductList.initParam(spec2);
 categoryProductList.getProductListByCategory(spec2.getPlistUrl, spec2.cId, spec2.num);
