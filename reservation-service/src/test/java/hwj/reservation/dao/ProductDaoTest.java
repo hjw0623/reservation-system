@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import hwj.reservation.config.RootApplicationContextConfig;
 import hwj.reservation.domain.Category;
-import hwj.reservation.domain.Product;
+import hwj.reservation.domain.ProductDTO;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -51,7 +51,7 @@ public class ProductDaoTest {
 	@Test
 	public void shouldSelectAll() throws SQLException{
 		int num = 10;
-		List<Product> allProduct;
+		List<ProductDTO> allProduct;
 		allProduct = productDao.selectAllProductList(10);
 		if(allProduct!=null){
 			System.out.println(allProduct.get(0).getName());		
@@ -81,7 +81,7 @@ public class ProductDaoTest {
 	@Test
 	public void shouldSelectByCategory() throws SQLException{
 		int categoryId = 16;
-		List<Product> allProduct;
+		List<ProductDTO> allProduct;
 		allProduct = productDao.selectProductListByCategory(categoryId, 10);
 		if(allProduct!=null){
 			System.out.println(allProduct.get(0).getName());		

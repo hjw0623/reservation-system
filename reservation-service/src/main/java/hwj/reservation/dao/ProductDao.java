@@ -17,14 +17,22 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import hwj.reservation.domain.Category;
-import hwj.reservation.domain.Product;
+import hwj.reservation.domain.DisplayInfoDTO;
+import hwj.reservation.domain.ProductDTO;
+import hwj.reservation.domain.ProductDetailDTO;
+import hwj.reservation.domain.ProductMainImageDTO;
 
 @Repository
 public class ProductDao {
 	private NamedParameterJdbcTemplate jdbc;
 	private SimpleJdbcInsert insertAction;
 
-	private RowMapper<Product> rowMapper = BeanPropertyRowMapper.newInstance(Product.class);
+	private RowMapper<ProductDTO> rowMapper = BeanPropertyRowMapper.newInstance(ProductDTO.class);
+	private RowMapper<ProductMainImageDTO> rowMapper2 = BeanPropertyRowMapper.newInstance(ProductMainImageDTO.class);
+	private RowMapper<DisplayInfoDTO> displayInforowMapper = BeanPropertyRowMapper.newInstance(DisplayInfoDTO.class);
+	private RowMapper<ProductDetailDTO> productDetailRowMapper = BeanPropertyRowMapper.newInstance(ProductDetailDTO.class);
+
+	
 	//Dao ProductDao
 	//optional
 	public  ProductDao(DataSource dataSource){
@@ -34,23 +42,30 @@ public class ProductDao {
 				.usingGeneratedKeyColumns("id");
 	}
 	// SimpleJdbcInsert
-	public Integer insert(Product product) {
+	public Integer insert(ProductDTO product) {
 		SqlParameterSource params = new BeanPropertySqlParameterSource(product);
 		return  insertAction.executeAndReturnKey(params).intValue();
 	}
-	//select All
-	public List<Product> selectAllProductList(Integer num)  {
+	//select All limit num
+	public List<ProductDTO> selectAllProductList(Integer num)  {
 		Map<String, Object> params =new HashMap<>();
 		params.put("num", num);
 		return jdbc.query(ProductSqls.SELECT_ALL_PRODUCT, params, rowMapper);
 	}
+	
+	public List<ProductDTO> selectAllProductList()  {
+		Map<String, Object> params =Collections.emptyMap();
+		return jdbc.query(ProductSqls.SELECT_ALL_PRODUCT_DEFAULT, params, rowMapper);
+	}
+	
 	//SELECT Product List BY CATEGORY ID
-	public List<Product> selectProductListByCategory(Integer categoryId, Integer num) throws SQLException  {
+	public List<ProductDTO> selectProductListByCategory(Integer categoryId, Integer num) throws SQLException  {
 		Map<String, Object> params = new HashMap<>();
 		params.put("category_id", categoryId);
 		params.put("num", num);
 		return jdbc.query(ProductSqls.SELECT_BY_CATEGORY_ID, params, rowMapper);
 	}
+	
 	//COUNT BY CategoryId
 	public Integer countByCategoryId(Integer id) throws SQLException {
 		Integer count;
@@ -63,22 +78,49 @@ public class ProductDao {
 		}
 		return count;
 	}
+	//SELECT display info
+	public DisplayInfoDTO selectDisplayInfoById(Integer id)  throws SQLException{
+		Map<String, Object>params = new HashMap<>();
+		params.put("id", id);
+		return jdbc.queryForObject(DisplayInfoSqls.SELECT_DISPLAY_INFO_BY_PRODUCT_ID, params, displayInforowMapper);
+	}
+	//SELECT ProductDetail
+	public ProductDetailDTO selectProductDetailById(Integer id)  throws SQLException{
+		Map<String, Object>params = new HashMap<>();
+		params.put("id", id);
+		return jdbc.queryForObject(ProductDetailSqls.SELECT_PRODUCT_DETAIL_BY_PRODUCT_ID, params, productDetailRowMapper);
+	}
+	//****
+	//SELECT Product List with Main Image By CATEGORY ID and limit num
+	public List<ProductMainImageDTO> selectProductListWithMainImageByCategory(Integer categoryId, Integer num) throws SQLException  {
+		Map<String, Object> params = new HashMap<>();
+		params.put("category_id", categoryId);
+		params.put("num", num);
+		return jdbc.query(ProductMainImageSqls.SELECT_WITH_MAIN_IMAGE_BY_CATEGORY_ID, params, rowMapper2);
+	}
+		
+	//select All List with Main Image limit num
+	public List<ProductMainImageDTO> selectAllProductWithMainImageList(Integer num)  {
+		Map<String, Object> params =new HashMap<>();
+		params.put("num", num);
+		return jdbc.query(ProductMainImageSqls.SELECT_ALL_PRODUCT_WITH_MAIN_IMAGE, params, rowMapper2);
+	}
 	//***
 
 	//SELECT BY ID
-	public Product selectById(Integer id)  throws SQLException{
+	public ProductDTO selectById(Integer id)  throws SQLException{
 		Map<String, Object>params = new HashMap<>();
 		params.put("id", id);
 		return jdbc.queryForObject(ProductSqls.SELECT_BY_PRODUCT_ID, params, rowMapper);
 	}
 	//SELECT BY NAME
-	public Product selectByName(String name) throws SQLException {
+	public ProductDTO selectByName(String name) throws SQLException {
 		Map<String, Object>params = new HashMap<>();
 		params.put("name", name);
 		return jdbc.queryForObject(ProductSqls.SELECT_BY_PRODUCT_NAME, params, rowMapper);
 	}
 	//UPDATE 
-	public int update(Product product){
+	public int update(ProductDTO product){
 		SqlParameterSource params = new BeanPropertySqlParameterSource(product);
 		return jdbc.update(ProductSqls.UPDATE_PRODUCT_NAME, params);
 	}

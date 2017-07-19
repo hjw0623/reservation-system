@@ -15,6 +15,7 @@ var categoryProductList = (function (spec, cId, number){
 			num = spec.num;
 			categoryId = spec.cId;
 		},
+		//상품 리스트 가져오기get
 		getProductListByCategory : function (getProductListUrl, categoryId, num){
 			$.ajax({
 				method:"GET",
@@ -26,6 +27,7 @@ var categoryProductList = (function (spec, cId, number){
 					$('.lst_event_box:eq(1)').empty();
 					
 					if(data.length>0){
+						console.log(data);
 						var source = $("#category-product-entry-template").html();
 						var template=Handlebars.compile(source);
 						for(var i=0; i<data.length; i++){
@@ -44,8 +46,13 @@ var categoryProductList = (function (spec, cId, number){
 						$('.lst_event_box:eq(0)').append(obj);	
 					}
 				},
+				error:function(data){
+					alert("ajax failed");
+				}
 			});
 		},
+		//
+	
 		//특정 카테고리 상품의 count조회 
 		getCountProductList : function (getProductListUrl, categoryId){
 			$.ajax({

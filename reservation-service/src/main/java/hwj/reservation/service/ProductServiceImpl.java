@@ -11,29 +11,38 @@ import org.springframework.transaction.annotation.Transactional;
 
 import hwj.reservation.dao.CategorySqls;
 import hwj.reservation.dao.ProductDao;
+import hwj.reservation.dao.ProductMainImageDao;
 import hwj.reservation.domain.Category;
-import hwj.reservation.domain.Product;
+import hwj.reservation.domain.DisplayInfoDTO;
+import hwj.reservation.domain.ProductDTO;
+import hwj.reservation.domain.ProductDetailDTO;
+import hwj.reservation.domain.ProductMainImageDTO;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 	@Autowired
 	ProductDao dao;
+
 	
-	public ProductServiceImpl(ProductDao dao){
+	public ProductServiceImpl(ProductDao dao ){
 		this.dao = dao;
 	}
 	
 	@Override
 	@Transactional(readOnly=false)
-	public Product create(Product product) {
+	public ProductDTO create(ProductDTO product) {
 		Integer id = dao.insert(product);
 		product.setId(id);
 		return product;
 	}
+	@Override
+	public List<ProductDTO> getAllList() throws SQLException {
+		return dao.selectAllProductList();
+	}
 
 	@Override
 	@Transactional(readOnly=true)
-	public List<Product> getListByCategory(Integer categoryId, Integer num) throws SQLException {
+	public List<ProductDTO> getListByCategory(Integer categoryId, Integer num) throws SQLException {
 		if(categoryId!=1){
 			return dao.selectProductListByCategory(categoryId, num);
 		}else{
@@ -41,26 +50,18 @@ public class ProductServiceImpl implements ProductService {
 		}
 	}
 	
-	//below: no use yet
 	@Override
 	@Transactional(readOnly=true)
-	public List<Product> getAllProductList(Integer num)  {
-			return dao.selectAllProductList(num);
-	}
-	
-	@Override
-	@Transactional(readOnly=true)
-	public Product getByName(String name) {
-		try {
-			return dao.selectByName(name);
-		} catch (SQLException e) {
-			return null;
+	public List<ProductMainImageDTO> getListWithImageByCategory(Integer categoryId, Integer num) throws SQLException {
+		if(categoryId!=1){
+			return dao.selectProductListWithMainImageByCategory(categoryId, num);
+		}else{
+			return dao.selectAllProductWithMainImageList(num);
 		}
 	}
-
 	@Override
 	@Transactional(readOnly=true)
-	public Product getById(Integer id) {
+	public ProductDTO getById(Integer id) {
 		try {
 			return dao.selectById(id);
 		} catch (SQLException e) {
@@ -68,8 +69,46 @@ public class ProductServiceImpl implements ProductService {
 		}
 	}	
 	@Override
+	@Transactional(readOnly=true)
+	public List<ProductDTO> getAllProductList(Integer num)  {
+			return dao.selectAllProductList(num);
+	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public ProductDTO getByName(String name) {
+		try {
+			return dao.selectByName(name);
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+
+	//--product detail query
+	@Override
+	@Transactional(readOnly=true)
+	public ProductDetailDTO getProductDetailById(Integer id) {
+		try {
+			return dao.selectProductDetailById(id);
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+	//--display info query
+	@Override
+	@Transactional(readOnly=true)
+	public DisplayInfoDTO getDisplayInfoById(Integer id) {
+		try {
+			return dao.selectDisplayInfoById(id);
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+	
+	//below: no use yet
+	@Override
 	@Transactional(readOnly=false)
-	public boolean update(Product product) {
+	public boolean update(ProductDTO product) {
 		int affected = dao.update(product);
 		return affected==1;
 	}

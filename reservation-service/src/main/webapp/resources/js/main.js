@@ -79,34 +79,31 @@ var mainCategory=(function (spec){
 				setTimeout(autoSlide, 2000);
 			}).bind(slideIndex);
 		},
+
+		//나중에 event.js로 이관	
 		//예약 버튼 누르면 main페이지 이동
 		reservLogoButton : $('.logo').on("click", ".ico_bk_logo", function(e){
 			location.href="/";
 		}),
-		
 		//네이버 버튼 
 		naverLogoButton : $('.logo').on("click", ".ico_n_logo",function(e){
 			location.href="https://m.naver.com";
 		}),
-		//프로모션에 있는거..일단 default페이지로 이동한다. 
+		//my reservationPage
+		myReservButton : $('.btn_my ').on("click",  function(e){
+			location.href="/my";
+		}),
+		//프로모션에서 세부 페이지 이동 일단 default페이지로 이동한다. 
 		detailButton : $('.visual_img').on("click",".event_txt_tit", function(e){
-			console.log(location);
-			console.log(location.href);
-			console.log(document.URL);
 			location.href="/detaildefault";
 		}),
 		detailButton2 :  $('.visual_img').on("click",".event_txt_dsc", function(e){
-			console.log(location);
 			location.href="/detaildefault";
 			
 		}),
 		
-		//my reservationPage
-		myReservButton : $('.header_tit ').on("click", ".btn_my", function(e){
-			console.log(document.URL);
-			location.href="/my";
-		}),
-		//click list product 
+		
+		//하단 리스트 목록 클릭시 그 리스트의 세부 페이지로 이동 
 		bizesButton :  $('.wrap_event_box').on("click", ".item_book", function(e){
 			console.log(location.href);
 			var productId = $(this).attr('clickId');

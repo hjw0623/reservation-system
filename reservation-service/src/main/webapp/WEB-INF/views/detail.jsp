@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    
     <div id="container">
         <div class="header fade">
             <header class="header_tit">
@@ -36,14 +37,15 @@
                         <div class="bg_pagination"></div>
                         <div class="figure_pagination">
                             <span class="num">1</span>
-                            <span class="num off">/ <span>3</span></span>
+                            <span class="num off">/ <span>1</span></span>
                         </div>
                     </div>
                     <div class="group_visual">
                         <div>
                             <div class="container_visual" style="width: 414px;">
                                 <ul class="visual_img">
-                                    <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="https://ssl.phinf.net/naverbooking/20170119_135/1484789767866RPO6o_JPEG/%B7%CE%B9%CC%BF%C0%C1%D9%B8%AE%BF%A7_1242.jpg?type=ff1242_1242"> <span class="img_bg"></span>
+                                    <!--
+                                    <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" > <span class="img_bg"></span>
                                         <div class="visual_txt">
                                             <div class="visual_txt_inn">
                                                 <h2 class="visual_txt_tit"> <span>뮤지컬 로미오와 줄리엣</span> </h2>
@@ -51,29 +53,14 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="https://ssl.phinf.net/naverbooking/20170119_135/1484789767866RPO6o_JPEG/%B7%CE%B9%CC%BF%C0%C1%D9%B8%AE%BF%A7_1242.jpg?type=ff1242_1242"> <span class="img_bg"></span>
-                                        <div class="visual_txt">
-                                            <div class="visual_txt_inn">
-                                                <h2 class="visual_txt_tit"> <span>뮤지컬 로미오와 줄리엣</span> </h2>
-                                                <p class="visual_txt_dsc"></p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="https://ssl.phinf.net/naverbooking/20170119_135/1484789767866RPO6o_JPEG/%B7%CE%B9%CC%BF%C0%C1%D9%B8%AE%BF%A7_1242.jpg?type=ff1242_1242"> <span class="img_bg"></span>
-                                        <div class="visual_txt">
-                                            <div class="visual_txt_inn">
-                                                <h2 class="visual_txt_tit"> <span>뮤지컬 로미오와 줄리엣</span> </h2>
-                                                <p class="visual_txt_dsc"></p>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    -->
                                 </ul>
                             </div>
                             <div class="prev">
                                 <div class="prev_inn">
                                     <a href="#" class="btn_prev" title="이전">
                                         <!-- [D] 첫 이미지 이면 off 클래스 추가 -->
-                                        <i class="spr_book2 ico_arr6_lt off"></i>
+                                        <i class="spr_book2 ico_arr6_lt "></i>
                                     </a>
                                 </div>
                             </div>
@@ -98,7 +85,6 @@
                     <!-- [D] 펼쳐보기 클릭 시 store_details에 close3 제거 -->
                     <div class="store_details close3">
                         <p class="dsc">
-                            웰메이드 창작 뮤지컬의 대표 브랜드 '김수로 프로젝트' 최신작! 연극, 뮤지컬, 무용 등 매년 작품성 있는 창작 공연을 선보이며, 대한민국 대표 웰메이드 창작 브랜드로 자리매김한 '김수로 프로젝트'의 최신작 입니다.
                         </p>
                     </div>
                     <!-- [D] 토글 상황에 따라 bk_more에 display:none 추가 -->
@@ -122,46 +108,46 @@
                         <div class="short_review_area">
                             <div class="grade_area">
                                 <!-- [D] 별점 graph_value는 퍼센트 환산하여 width 값을 넣어줌 -->
-                                <span class="graph_mask"> <em class="graph_value" style="width: 84%;"></em> </span>
-                                <strong class="text_value"> <span>4.2</span> <em class="total">5.0</em> </strong>
-                                <span class="join_count"><em class="green">52건</em> 등록</span>
+                                <span class="graph_mask"> <em class="graph_value" style="width: 0%;"></em> </span>
+                                <strong class="text_value"> <span></span> <em class="total">5.0</em> </strong>
+                                <span class="join_count"><em class="green"></em> 등록</span>
                             </div>
                             <ul class="list_short_review">
-                                <li class="list_item">
+                              <!--<li class="list_item">
                                     <div>
                                         <div class="review_area">
                                             <div class="thumb_area">
-                                                <a href="#" class="thumb" title="이미지 크게 보기"> <img width="90" height="90" class="img_vertical_top" src="http://naverbooking.phinf.naver.net/20170306_3/1488772023601A4195_JPEG/image.jpg?type=f300_300" alt="리뷰이미지"> </a> <span class="img_count">1</span>                                                </div>
-                                            <h4 class="resoc_name">뮤지컬 로미오와 줄리엣</h4>
-                                            <p class="review">2층이어서 걱정했는데 꽤잘보여서 좋았습니다 고미오 너무 멋있었습니다 사진은 커튼콜때 찍었습니다 끝나고 퇴근길도 봐서 너무 좋았어요</p>
+                                            </div>
+                                            <h4 class="resoc_name"></h4>
+                                            <p class="review"></p>
                                         </div>
                                         <div class="info_area">
-                                            <div class="review_info"> <span class="grade">4.0</span> <span class="name">dbfl****</span> <span class="date">2017.3.5. 방문</span> </div>
+                                            <div class="review_info"> <span class="grade"></span> <span class="name"></span> <span class="date"></span> </div>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="list_item">
                                     <div>
                                         <div class="review_area no_img">
-                                            <h4 class="resoc_name">뮤지컬 로미오와 줄리엣</h4>
-                                            <p class="review">너무 재밌게봤구요~<br>마지막공연 후 뒷풀이도 잘봤습니다</p>
+                                            <h4 class="resoc_name"> </h4>
+                                            <p class="review"></p>
                                         </div>
                                         <div class="info_area">
-                                            <div class="review_info"> <span class="grade">5.0</span> <span class="name">yyck****</span> <span class="date">2017.3.5. 방문</span> </div>
+                                            <div class="review_info"> <span class="grade"></span> <span class="name"></span> <span class="date"></span> </div>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="list_item">
                                     <div>
                                         <div class="review_area no_img">
-                                            <h4 class="resoc_name">뮤지컬 로미오와 줄리엣</h4>
-                                            <p class="review">좋은 공연이었습니다. <br>머큐쇼역활 하신분의 열창이 기억에 남는 반면에,,, 로미오는 별로 기억에 남지 않네요..</p>
+                                            <h4 class="resoc_name"></h4>
+                                            <p class="review"></p>
                                         </div>
                                         <div class="info_area">
-                                            <div class="review_info"> <span class="grade">4.0</span> <span class="name">xero****</span> <span class="date">2017.3.4. 방문</span> </div>
+                                            <div class="review_info"> <span class="grade"></span> <span class="name"></span> <span class="date"></span> </div>
                                         </div>
                                     </div>
-                                </li>
+                                </li>      -->     
                             </ul>
                         </div>
                         <p class="guide"> <i class="spr_book2 ico_bell"></i> <span>네이버 예약을 통해 실제 방문한 이용자가 남긴 평가입니다.</span> </p>
@@ -172,7 +158,7 @@
                     <!-- [D] tab 선택 시 anchor에 active 추가 -->
                     <ul class="info_tab_lst">
                         <li class="item active _detail">
-                            <a href="#" class="anchor"> <span>상세정보</span> </a>
+                            <a href="#" class="anchor active"> <span>상세정보</span> </a>
                         </li>
                         <li class="item _path">
                             <a href="#" class="anchor"> <span>오시는길</span> </a>
@@ -186,9 +172,7 @@
                                 <ul class="detail_info_group">
                                     <li class="detail_info_lst">
                                         <strong class="in_tit">[소개]</strong>
-                                        <p class="in_dsc">
-                                            웰메이드 창작 뮤지컬의 대표 브랜드 '김수로 프로젝트' 최신작! 연극, 뮤지컬, 무용 등 매년 작품성 있는 창작 공연을 선보이며, 대한민국 대표 웰메이드 창작 브랜드로 자리매김한 '김수로 프로젝트'의 최신작 입니다. 웰메이드 창작 뮤지컬의 대표 브랜드 '김수로 프로젝트' 최신작! 연극, 뮤지컬, 무용 등 매년 작품성 있는 창작 공연을 선보이며, 대한민국 대표 웰메이드 창작 브랜드로 자리매김한 '김수로 프로젝트'의 최신작 입니다.
-                                        </p>
+                                        <p class="in_dsc"></p>
                                     </li>
                                     <li class="detail_info_lst"> <strong class="in_tit">[공지사항]</strong>
                                         <ul class="in_img_group">
@@ -216,12 +200,12 @@
                             <div class="store_info">
                                 <div class="store_addr_wrap">
                                     <span class="fn fn-pin2"></span>
-                                    <p class="store_addr store_addr_bold">서울특별시 종로구 종로33길 15 </p>
+                                    <p class="store_addr store_addr_bold"></p>
                                     <p class="store_addr">
                                         <span class="addr_old">지번</span>
-                                        <span class="addr_old_detail">서울특별시 종로구 연지동 270 </span>
+                                        <span class="addr_old_detail"> </span>
                                     </p>
-                                    <p class="store_addr addr_detail">두산아트센터 연강홀</p>
+                                    <p class="store_addr addr_detail"></p>
                                 </div>
                                 <div class="lst_store_info_wrap">
                                     <ul class="lst_store_info">
@@ -240,6 +224,7 @@
             </div>
         </div>
     </div>
+    <div id="pop-up" class="pop_up_layer "></div>
     <footer>
         <div class="gototop">
             <a href="#" class="lnk_top"> <span class="lnk_top_text">TOP</span> </a>
@@ -252,6 +237,8 @@
     <div id="photoviwer"></div>
     <script src="/resources/js/node_modules/jquery/dist/jquery.js"></script>
     <script src="/resources/js/node_modules/handlebars/dist/handlebars.js"></script>
+    <script src="/resources/js/detailapp.js"></script>
+    
 </body>
 
 </html>

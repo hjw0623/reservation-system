@@ -6,11 +6,16 @@ public class ProductSqls {
 		//COUNT BY Category
 		static final String COUNT_PRODUCT_BY_CATEGORY="SELECT COUNT(*) FROM PRODUCT WHERE category_id=:category_id ";
 		
-		//Select All List
+		//Select All List by limit num
 		static final String SELECT_ALL_PRODUCT= 
 				"SELECT id, category_id, name, description, sales_start, sales_end, sales_flag, event, create_date, modify_date "
 				+ "FROM PRODUCT LIMIT 0"
 				+", :num";
+		
+		//SELECT ALL List 
+		static final String SELECT_ALL_PRODUCT_DEFAULT= 
+				"SELECT id, category_id, name, description, sales_start, sales_end, sales_flag, event, create_date, modify_date "
+				+"FROM PRODUCT";
 		
 		//SELECT BY CATEGORY ID
 		static final String SELECT_BY_CATEGORY_ID = 

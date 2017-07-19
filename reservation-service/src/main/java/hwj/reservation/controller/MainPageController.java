@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import hwj.reservation.domain.Category;
-import hwj.reservation.domain.Product;
+import hwj.reservation.domain.ProductDTO;
 import hwj.reservation.service.CategoryService;
 import hwj.reservation.service.ProductService;
 
@@ -46,6 +46,4 @@ public class MainPageController {
 		}
 		return cList;
 	}	
-	
-	
 }

@@ -252,6 +252,8 @@
     <div id="photoviwer"></div>
    <script src="/resources/js/node_modules/jquery/dist/jquery.js"></script>
     <script src="/resources/js/node_modules/handlebars/dist/handlebars.js"></script>
+   <script src="/resources/js/detailapp.js"></script>
+    
 </body>
 
 </html>

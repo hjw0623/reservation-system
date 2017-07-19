@@ -26,7 +26,7 @@ public class WebInitializer implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext) throws ServletException {
     	WebApplicationContext context = getContext();
 		
-    	//encoding filter 설정
+    	//encoding filter 설정, post 한글 인코딩 
         EnumSet<DispatcherType> dispatcherTypes = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD);
         
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
