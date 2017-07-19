@@ -267,7 +267,7 @@
 							+'<ul class="lst_store_info">'
 							+'<li class="item"> <span class="item_lt"> <i class="fn fn-mail1"></i> '
 							+'<span class="sr_only">이메일</span> </span> <span class="item_rt">'
-							+'<a href="'+data.email+'" class="store_tel">'+data.email+'</a></span> </li>'
+							+'<a href="'+"mailto:"+data.email+'" class="store_tel">'+data.email+'</a></span> </li>'
                             +'</ul></div>' ;
 
                 $('.lst_store_info_wrap').after(hompageItem).after(emailItem);                                      
