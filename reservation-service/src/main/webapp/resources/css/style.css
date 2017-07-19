@@ -3802,12 +3802,32 @@ button {
 }
 
 .pop_up_layer{
-    position:absolute;
+    position:fixed;
     left:0;
     top:0;
+    width:100%;
     z-index: 9020;
     background-color:#000; 
     display:none;  
     overflow:auto;
+
+}
+.back_arrow{
+    color:#fff; 
+}
+.pop_up_slide{
+
+}
+.pop_up_content{
+   
+    left:200px;
+    margin-left: 20%;
+    top: 50%;
+    width:90%;
+    margin-top: -150px; 
+    background-color:#000; 
+    display: none;
+    position:fixed;  
+    z-index:9900;
 
 }

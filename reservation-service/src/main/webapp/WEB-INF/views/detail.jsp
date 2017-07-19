@@ -12,7 +12,6 @@
 </head>
 
 <body>
-    
     <div id="container">
         <div class="header fade">
             <header class="header_tit">
@@ -223,8 +222,10 @@
                 </div>
             </div>
         </div>
+        <div id="pop-up" class="pop_up_layer "></div>
+       <div class="pop_up_content"></div>
     </div>
-    <div id="pop-up" class="pop_up_layer "></div>
+
     <footer>
         <div class="gototop">
             <a href="#" class="lnk_top"> <span class="lnk_top_text">TOP</span> </a>

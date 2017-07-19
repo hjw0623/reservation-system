@@ -130,117 +130,8 @@
 	};
 	getProductImageList(imgUrl, id);
 
-	//댓글 
-	function getThreeComentList(getCommentUrl, id){
-		$.ajax({
-			method:"GET",
-			url:getCommentUrl,
-			data:{id:id},
-			success:function(data){	
-				//console.log(data.length);
-				var idx = 0;
-				console.log("date length");
-				console.log(data);
-				$.each(data, function(){
-					var userNameInitial = data[idx].userName;
-					userNameInitial = userNameInitial.substring(0,4)+"****";
-					var date = data[idx].create_date.split('-');
-					if(date[1]<10) date[1] = date[1]%10;
-					var visit = date[0]+'.'+date[1]+'.'+date[2]+'.'+' 방문';
+	
 
-					var item = '<li class="list_item">'
-                                +'<div>'
-                                +'<div class="review_area">'
-                                +'<div class="thumb_area">'
-                                +'</div>'
-                                +'<h4 class="resoc_name">'+data[idx].productName+'</h4>'
-                                +'<p class="review">'+data[idx].comment+'</p>'
-                                +'</div>'
-                                +'<div class="info_area">'
-                                +'<div class="review_info"> <span class="grade">'+data[idx].score+'</span> '
-                                +'<span class="name">'+userNameInitial+'</span>'
-                                +'<span class="date">'+visit+'</span> </div>'
-                                +'</div></div></li>'
-                    $('.list_short_review').append(item);
-					$('.review_box li.list_item').eq(idx).find('p.review').html();
-					//img가 존재한다면 thumbnail로 넣기 
-					if(data[idx].imgList.length!=0){
-					
-						var imgItem = '<a href="#" class="thumb" title="이미지 크게 보기"> '
-						+'<img width="90" height="90" class="img_vertical_top" src="'
-						+'/imgresources'+data[idx].imgList[0].save_file_name  +'" alt="리뷰이미지"> '
-						+'</a><span class="img_count">'+data[idx].imgList.length+'</span> '
-						$('.list_item').eq(idx).find('.thumb_area').append(imgItem);
-					}
-					idx++;
-				})
-			}
-		});
-	};
-	getThreeComentList(commentUrl,id);
-
-	//Layer PopUp Event
-	function wrap(){
-		console.log("wrap");
-		var popUpHeight = $(document).height();
-		var popUpWidth = $(document).width();
-		$('.pop_up_layer').css({"width":popUpWidth, "height":popUpHeight, "display":"block"});
-		var button = '<li></li>';
-		$('.pop_up_layer').append(button);
-		var imgList = '<div class="section_visual">'
-				         +'<a href="#" class="lnk_logo" title="네이버">' 
-				         +'<span class="spr_bi ico_n_logo">네이버</span>'
-				         +'</a>'
-		                 +'<div class="group_visual">'
-		                 +'<div>'
-		                 +'<div class="container_visual" style="width: 414px;">'
-		                 +'<ul class="visual_img">'
-		                 +'</ul>'
-		                 +'</div>'
-		                 +'<div class="prev">'
-		                 +'<div class="prev_inn">'
-		                 +'<a href="#" class="btn_prev" title="이전">'
-		                                    //<!-- [D] 첫 이미지 이면 off 클래스 추가 -->
-		                 +'<i class="spr_book2 ico_arr6_lt "></i>'
-		                 +'</a>'
-		                 +'</div>'
-		                 +'</div>'
-		                 +'<div class="nxt">'
-		                 +'<div class="nxt_inn">'
-		                 +'<a href="#" class="btn_nxt" title="다음">'
-		                 +'<i class="spr_book2 ico_arr6_rt"></i>'
-		                 +'</a> </div> </div> </div> </div>';
-
-
-
-
-
-
-
-
-
-
-
-
-	};
-	$('.section_review_list').on("click",'.thumb', function(e){
-		console.log(this);
-		console.log("dd");
-		e.preventDefault();
-		wrap();
-
-	});
-
-
-	$('.pop_up_layer').on('click',function(){
-		$(this).hide();
-	});
-
-
-
-
-
-	//$(('.thumb')
 	//평균 스코어
 	function getAverageScore(getAvgUrl, id){
 		$.ajax({
@@ -274,12 +165,39 @@
 	};
 	getAverageScore(avgUrl, id);
 	getCountComment(countCommentUrl,id);
+
+
+	//버튼 이벤트 처리 
+	$('.group_visual').on("click ", '.nxt_inn' , function(event){
+	 		event.stopPropagation();
+			//console.log("nxt clicked");
+			manualSlide(1);
+			$('.figure_pagination span:eq(0)').text(slideIndex).val();
+			if(slideIndex===1){
+				$('.btn_prev').find('.spr_book2.ico_arr6_lt').addClass('off');
+			}else{
+				$('.btn_prev').find('.spr_book2.ico_arr6_lt').removeClass('off');
+			}
+	}).bind(slideIndex);
+
+ 	$('.group_visual').on("click touch", '.prev_inn' , function(event){
+			event.stopPropagation();
+			//console.log("prev clicked");
+			manualSlide(-1);
+			$('.figure_pagination span:eq(0)').text(slideIndex).val();
+			if(slideIndex==1){
+				$('.btn_prev').find('.spr_book2.ico_arr6_lt').addClass('off');
+
+			}else{
+				$('.btn_prev').find('.spr_book2.ico_arr6_lt').removeClass('off');
+			}
+	}).bind(slideIndex);
+	
 	// button slide
 	function slideShow (length){
 			$('ul.visual_img').animate({"margin-left": -length}, 100);
 	};
 	function manualSlide(n) {
-
 		slideIndex +=n;
 		//commit test
 		if(slideIndex > listSize){
@@ -359,32 +277,6 @@
 	getDisplayInfo(displayUrl, id);
 
 
-	//버튼 이벤트 처리 
-	$('.group_visual').on("click ", '.nxt_inn' , function(event){
-	 		event.stopPropagation();
-			//console.log("nxt clicked");
-			manualSlide(1);
-			$('.figure_pagination span:eq(0)').text(slideIndex).val();
-			if(slideIndex===1){
-				$('.btn_prev').find('.spr_book2.ico_arr6_lt').addClass('off');
-			}else{
-				$('.btn_prev').find('.spr_book2.ico_arr6_lt').removeClass('off');
-			}
-	}).bind(slideIndex);
-
- 	$('.group_visual').on("click touch", '.prev_inn' , function(event){
-			event.stopPropagation();
-			//console.log("prev clicked");
-			manualSlide(-1);
-			$('.figure_pagination span:eq(0)').text(slideIndex).val();
-			if(slideIndex==1){
-				$('.btn_prev').find('.spr_book2.ico_arr6_lt').addClass('off');
-
-			}else{
-				$('.btn_prev').find('.spr_book2.ico_arr6_lt').removeClass('off');
-			}
-	}).bind(slideIndex);
-	
 	//예매하기 버튼
 	$('.section_btn').on("click", '.bk_btn', function(){
 		var salesFlag = $('.section_btn').find('.bk_btn').data().sales;
@@ -424,6 +316,191 @@
 		event.preventDefault();
 		event.stopPropagation();
 	});
+
+
+
+
+//===========
+
+	var imgNames = [[],[],[]];
+	//댓글 
+	function getThreeComentList(getCommentUrl, id){
+		$.ajax({
+			method:"GET",
+			url:getCommentUrl,
+			data:{id:id},
+			success:function(data){	
+				//console.log(data.length);
+				var idx = 0;
+				console.log("date length");
+				console.log(data);
+				$.each(data, function(){
+					var userNameInitial = data[idx].userName;
+					userNameInitial = userNameInitial.substring(0,4)+"****";
+					var date = data[idx].create_date.split('-');
+					if(date[1]<10) date[1] = date[1]%10;
+					var visit = date[0]+'.'+date[1]+'.'+date[2]+'.'+' 방문';
+
+					var item = '<li class="list_item">'
+                                +'<div>'
+                                +'<div class="review_area">'
+                                +'<div class="thumb_area">'
+                                +'</div>'
+                                +'<h4 class="resoc_name">'+data[idx].productName+'</h4>'
+                                +'<p class="review">'+data[idx].comment+'</p>'
+                                +'</div>'
+                                +'<div class="info_area">'
+                                +'<div class="review_info"> <span class="grade">'+data[idx].score+'</span> '
+                                +'<span class="name">'+userNameInitial+'</span>'
+                                +'<span class="date">'+visit+'</span> </div>'
+                                +'</div></div></li>'
+                    $('.list_short_review').append(item);
+					$('.review_box li.list_item').eq(idx).find('p.review').html();
+					//img가 존재한다면 thumbnail로 넣기 
+					if(data[idx].imgList.length!=0){
+
+						var imgItem = '<a href="#" class="thumb" title="이미지 크게 보기" data-idx-num="'+idx+'">'
+						+'<img width="90" height="90" class="img_vertical_top" src="'
+						+'/imgresources'+data[idx].imgList[0].save_file_name  +'" alt="리뷰이미지"> '
+						+'</a><span class="img_count">'+data[idx].imgList.length+'</span> '
+						$('.list_item').eq(idx).find('.thumb_area').append(imgItem);
+					}
+					var listIdx = 0;
+					$.each(data[idx].imgList, function(){
+						imgNames[idx][listIdx] = data[idx].imgList[listIdx].save_file_name;
+						listIdx++;
+					})
+
+					idx++;
+				});
+			}
+		});
+	};
+	getThreeComentList(commentUrl,id);
+
+//=====================================================================================
+	//Layer PopUp Event
+	var commentSlideIndex =0;
+	var numOfCommentImage = 0;
+	function wrap(){
+		commentSlideIndex =0;
+		console.log("imgName array");
+		console.log(imgNames);
+		console.log("wrap");
+		var popUpHeight = $(document).height();
+		var popUpWidth = $(document).width();
+		var contentWidth = popUpWidth*0.8;
+		var contentHeight = popUpHeight*0.7;
+		//배경
+		$('.pop_up_layer').css({"width":popUpWidth, "height":popUpHeight, "display":"block"});
+		//내부 
+		$('.pop_up_content').css({"width":"414px", "height":contentHeight,"display":"block"});
+		var numOfComment = $('.thumb').attr('data-idx-num');
+		console.log(numOfComment);
+		numOfCommentImage = imgNames[numOfComment].length;
+		$('.pop_up_content').empty();  
+		var imgList = '<div class="section_visual ">'
+				         +'<a href="#" class="btn_back back_arrow " title="이전 화면으로 이동">' 
+				         +'<i class="fn fn-backward1 "></i>'
+				         +'</a>'
+		                 +'<div class="group_visual">'
+		                 +'<div>'
+		                 +'<div class="container_visual" >'
+		                 +'<ul class="visual_img ">'
+		                 +'</ul>'
+		                 +'</div>'
+		                 +'<div class="prev">'
+		                 +'<div class="prev_inn">'
+		                 +'<a href="#" class="btn_prev" title="이전">'
+		                 +'<i class="spr_book2 ico_arr6_lt "></i>'
+		                 +'</a>'
+		                 +'</div>'
+		                 +'</div>'
+		                 +'<div class="nxt">'
+		                 +'<div class="nxt_inn">'
+		                 +'<a href="#" class="btn_nxt" title="다음">'
+		                 +'<i class="spr_book2 ico_arr6_rt"></i>'
+		                 +'</a> </div> </div> </div>'
+		               +'</div>';
+		$('.pop_up_content').append(imgList);                 
+		$('.container_visual').css({"width":414*numOfCommentImage+"px"});
+
+		console.log(numOfCommentImage);
+		console.log(imgNames[numOfComment]);
+		var localIdx=0;
+		$.each( imgNames[numOfComment], function(){
+			console.log(imgNames[numOfComment][localIdx]);
+			var imgSlide = '<li class="item" style="width: 414px;">' 
+							+'<img alt="" class="img_thumb" src="'
+							+'/imgresources'+imgNames[numOfComment][localIdx] +'">'
+							+'<span class="img_bg"></span>'                             
+                            +'</li>';
+			$('.pop_up_content').find('.visual_img').append(imgSlide);
+			localIdx++;
+		});
+	};
+
+	//버튼 이벤트 처리 
+	$('.pop_up_content').on("click ", '.nxt_inn' , function(event){
+	 		event.stopPropagation();
+			//console.log("nxt clicked");
+			manualSlide2(1, numOfCommentImage);
+
+	}).bind(commentSlideIndex);
+
+ 	$('.pop_up_content').on("click touch", '.prev_inn' , function(event){
+			event.stopPropagation();
+			//console.log("prev clicked");
+			manualSlide2(-1, numOfCommentImage);
+			
+	}).bind(commentSlideIndex);
+	
+	// 댓글 이미지 slide
+	function manualSlide2(n, size) {
+		commentSlideIndex +=n;
+		//commit test
+		if(commentSlideIndex > numOfCommentImage){
+			  commentSlideIndex =1;
+		}
+		if(commentSlideIndex <1){
+			  commentSlideIndex=1;
+		}
+		var size = $('.pop_up_content .group_visual').outerWidth();
+		console.log("size:"+size);
+		var len = ((commentSlideIndex-1)*size);
+		console.log("len :"+len);
+		//console.log(size);
+		slideShow2(len);	  
+	};
+	
+	function slideShow2 (length){
+			$('.pop_up_content .visual_img').animate({"margin-left": -length}, 100);
+	};
+
+
+	$('.section_review_list').on("click",'.thumb', function(e){
+		console.log("this");
+		console.log(this);
+		console.log("dd");
+		e.preventDefault();
+		wrap();
+
+	});
+	$('.pop_up_content ').on("click", '.btn_back', function(event){
+		event.preventDefault();
+		$('.pop_up_layer, .pop_up_content').hide();
+	})
+
+	$('.pop_up_layer').on('click',function(){
+		console.log('layer clicked');
+		$(this).hide();
+		$('.pop_up_content').hide();
+	});
+
+
+
+
+//=====================================================================================
 
 	
  })();
