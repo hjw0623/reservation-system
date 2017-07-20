@@ -44,7 +44,7 @@
 			location.href="/";
 	});
 	$('.btn_my').on("click",  function(e){
-			location.href="/my";
+			location.href="/login/api/loginauth";
 	});
 	//펼쳐보기, 접기
 	$('.bk_more._open').on("click",  function(e){
@@ -166,6 +166,7 @@
 	getAverageScore(avgUrl, id);
 	getCountComment(countCommentUrl,id);
 
+//=====================================================================================
 
 	//버튼 이벤트 처리 
 	$('.group_visual').on("click ", '.nxt_inn' , function(event){
@@ -193,6 +194,12 @@
 			}
 	}).bind(slideIndex);
 	
+
+	$(document).on('pagecreate', '.section_visual', function(){
+			$('.group_visual').on("swipe",function(){
+				console.log("Swipe detected!");
+			});
+	});
 	// button slide
 	function slideShow (length){
 			$('ul.visual_img').animate({"margin-left": -length}, 100);
@@ -208,10 +215,13 @@
 		}
 		var len = ((slideIndex-1)*size);
 		slideShow(len);
-		  
 	};
+
 	
-	//-----
+
+	
+
+//=====================================================================================
 	//countImage
 	function getCountImageList(getCountUrl, id){
 		$.ajax({
@@ -238,7 +248,11 @@
  		});
  	};
 	getProductDetail(productDetailUrl, id);
-	
+
+	$('.section_visual').on('touchstart', '.container_visual',function(){
+		console.log("start");
+	})
+
 	//display_info
 	function getDisplayInfo(getDisplayInfoUrl, id){
 		$.ajax({
@@ -276,6 +290,7 @@
  		});
 	};
 	getDisplayInfo(displayUrl, id);
+//=====================================================================================
 
 
 	//예매하기 버튼
@@ -321,7 +336,7 @@
 
 
 
-//===========
+//=====================================================================================
 
 	var imgNames = [[],[],[]];
 	//댓글 
@@ -436,7 +451,7 @@
 		});
 	};
 
-	//버튼 이벤트 처리 
+	//레이어 팝업용 버튼 이벤트 처리 
 	$('.pop_up_content').on("click ", '.nxt_inn' , function(event){
 	 		event.stopPropagation();
 			//console.log("nxt clicked");
@@ -451,7 +466,7 @@
 			
 	}).bind(commentSlideIndex);
 	
-	// 댓글 이미지 slide
+	// 댓글 이미지 레이어 팝업용. slide
 	function manualSlide2(n, size) {
 		commentSlideIndex +=n;
 		//commit test
@@ -468,12 +483,12 @@
 		//console.log(size);
 		slideShow2(len);	  
 	};
-	
+	//레이어 팝업용.
 	function slideShow2 (length){
 			$('.pop_up_content .visual_img').animate({"margin-left": -length}, 100);
 	};
 
-
+	//썸네일 누를시 레이어 팝업으로 
 	$('.section_review_list').on("click",'.thumb', function(e){
 		e.preventDefault();
 		wrap();
@@ -490,7 +505,7 @@
 		$('.pop_up_content').hide();
 	});
 
-	//===============
+//=====================================================================================
 	//naver Map API
 
 	function naverMapApi(){ 

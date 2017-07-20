@@ -91,7 +91,7 @@ var mainCategory=(function (spec){
 		}),
 		//my reservationPage
 		myReservButton : $('.btn_my ').on("click",  function(e){
-			location.href="/my";
+			location.href="/login/api/Oauth";
 		}),
 		//프로모션에서 세부 페이지 이동 일단 default페이지로 이동한다. 
 		detailButton : $('.visual_img').on("click",".event_txt_tit", function(e){

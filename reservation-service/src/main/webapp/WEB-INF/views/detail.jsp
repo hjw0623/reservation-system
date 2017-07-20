@@ -10,6 +10,8 @@
     <title>네이버 예약</title>
     <link href="/resources/css/style.css" rel="stylesheet">
      <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=9y9mVsuHC1uIHfGs3H1E&submodules=geocoder"></script>
+    
+
 </head>
 
 <body>
@@ -17,8 +19,8 @@
         <div class="header fade">
             <header class="header_tit">
                 <h1 class="logo">
-                    <a href="#" class="lnk_logo" title="네이버"> <span class="spr_bi ico_n_logo">네이버</span> </a>
-                    <a href="#" class="lnk_logo" title="예약"> <span class="spr_bi ico_bk_logo">예약</span> </a>
+                    <a href="https://m.naver.com" class="lnk_logo" title="네이버"> <span class="spr_bi ico_n_logo">네이버</span> </a>
+                    <a href="/" class="lnk_logo" title="예약"> <span class="spr_bi ico_bk_logo">예약</span> </a>
                 </h1>
                 <a href="#" class="btn_my"> <span title="내 예약">MY</span> </a>
             </header>
@@ -193,7 +195,6 @@
                         <div class="box_store_info no_topline">
                             <a href="#" class="store_location" title="지도웹으로 연결">
                            <!-- 
-                                
                                 <img class="store_map img_thumb" alt="map" src="https://simg.pstatic.net/static.map/image?version=1.1&amp;crs=EPSG:4326&amp;baselayer=bl_vc_bg&amp;exception=xml&amp;scale=2&amp;caller=mw_smart_booking&amp;overlayers=ol_vc_an&amp;center=127.0011948,37.5717079&amp;markers=type,default2,127.0011948,37.5717079&amp;level=11&amp;w=340&amp;h=150">
                                 <span class="img_border"></span>
                                 <span class="btn_map"><i class="spr_book2 ico_mapview"></i></span>

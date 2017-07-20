@@ -3821,8 +3821,8 @@ button {
 }
 .pop_up_content{
    
-    left:200px;
-    margin-left: 20%;
+    left:0px;
+    margin-left: 5%;
     top: 50%;
     width:90%;
     margin-top: -150px; 

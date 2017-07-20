@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/my")
 public class MyReservationPageController {
+	
 	@GetMapping
 	public String loadMyReservation( Model model){
 		 return "/myreservation";
 	}	
+	
+	
 }
