@@ -443,7 +443,7 @@
 			//console.log(imgNames[numOfComment][localIdx]);
 			var imgSlide = '<li class="item" style="width: 414px;">' 
 							+'<img alt="" class="img_thumb" src="'
-							+'/imgresources'+imgNames[numOfComment][localIdx] +'">'
+							+'/imgresources'+imgNames[numOfComment][localIdx] +'" width="100%" height="100%" ">'
 							+'<span class="img_bg"></span>'                             
                             +'</li>';
 			$('.pop_up_content').find('.visual_img').append(imgSlide);
