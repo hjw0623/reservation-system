@@ -144,7 +144,7 @@ public class ReservationPageController {
 		//유효성 체크 
 		log.info("insert try");
 		
-		reserve.setProductId(12);
+		reserve.setProductId(productId);
 		System.out.println((int)session.getAttribute("userId"));
 		reserve.setUserId((int)session.getAttribute("userId"));
 		Timestamp timestamp = new Timestamp(new Date().getTime());

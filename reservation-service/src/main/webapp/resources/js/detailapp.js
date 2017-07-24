@@ -306,7 +306,21 @@
 		var Month = current.getMonth()+1;
 		var Day = current.getDate();
 		var salesEnd =  $('.section_btn').find('i.fn-nbooking-calender2').data().salesDate.split('-');
-		if(Year<=salesEnd[0] && Month <=salesEnd[1] && Day <=salesEnd[2]){
+		console.log(Year+" "+Month+" "+Day);
+		console.log(salesEnd);
+
+		if(Year<=(salesEnd[0]-0) && Month <= (salesEnd[1]-0)){
+			if(Month===(salesEnd[1]-0)){
+				if(Day <= (salesEnd[2]-0)){
+					alert("구매가능");
+				location.href=detailUrl+"/"+id+"/item/"+detailId;
+				}else{
+					alert("판매기간 종료");
+				}
+			}else{
+				alert("구매가능");
+				location.href=detailUrl+"/"+id+"/item/"+detailId;
+			}
 			alert("구매가능");
 			location.href=detailUrl+"/"+id+"/item/"+detailId;
 		}else{
@@ -516,7 +530,6 @@
 	function naverMapApi(){ 
 		var tmpAddr = $('.detail_location').find('.store_addr_bold').text();
 		$('.detail_location').find('.store_location').attr('href', 'http://map.naver.com/?query='+tmpAddr);
-		console.log(tmpAddr);
 		var map = new naver.maps.Map('map');
 	  	var myaddress = tmpAddr;  // 도로명 주소나 지번 주소만 가능 (건물명 불가!!!!)
 	    naver.maps.Service.geocode({address: myaddress}, function(status, response) {

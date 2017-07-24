@@ -196,7 +196,6 @@ var ReservationFunction = (function (){
 			});
 			ReservationFunction.GetProductInfo(getProductUrl);
 		},
-		
 
 		//이벤트 ====================================================================================
 		//이용자 약관 전체 동의 
@@ -355,9 +354,7 @@ var ReservationFunction = (function (){
 	   			}
 			});
 		},
-
 	}
-	
 })();
 
 ReservationFunction.GetUserInfo(ReservationFunction.GetUserUrl());
