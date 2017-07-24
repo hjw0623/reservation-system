@@ -153,14 +153,14 @@ public class ReservationPageController {
 		reserve.setModifyDate(timestamp);
 		ReservationInfoDTO reservation;
 		try {
-			log.info("insert 시도 ");
+			//log.info("insert 시도 ");
 			reservation = reservationService.insert(reserve );
-			log.info("reservation success");
+			//log.info("reservation success");
 			return reservation;//"redirect:/my";
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("reservation insert failed");
-			return null;//"redirect:/";
+			return reserve;//"redirect:/";
 		}
 	}
 }
