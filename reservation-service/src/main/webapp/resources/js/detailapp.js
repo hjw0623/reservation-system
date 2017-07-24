@@ -15,7 +15,7 @@
  	//url로부터 productId값 읽어오기 
  	var urlParsing = location.href.replace(/[^(\/a-zA-Z0-9)]/gi,"").split('/');
  	var id = urlParsing[urlParsing.length-1];
-
+ 	var detailId = 0;
  	//for slide
  	var listSize = 0;
  
@@ -236,13 +236,17 @@
  	getCountImageList(countUrl, id);
 
  	//product_detail 
+
+ 
  	function getProductDetail(getProductDetailUrl, id){
  		$.ajax({
  			method:"GET",
  			url:getProductDetailUrl,
 			data:{id:id},
 			success:function(data){
+				detailId = data.id;
 				console.log(data);
+				console.log(detailId);
 				$('.detail_info_lst').find('.in_dsc').html(data.content);
 			},
  		});
@@ -304,6 +308,7 @@
 		var salesEnd =  $('.section_btn').find('i.fn-nbooking-calender2').data().salesDate.split('-');
 		if(Year<=salesEnd[0] && Month <=salesEnd[1] && Day <=salesEnd[2]){
 			alert("구매가능");
+			location.href=detailUrl+"/"+id+"/item/"+detailId;
 		}else{
 			alert("판매기간 종료");
 		}

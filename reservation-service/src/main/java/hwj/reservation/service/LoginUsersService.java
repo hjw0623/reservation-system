@@ -9,9 +9,12 @@ import hwj.reservation.domain.Users;
 
 
 public interface LoginUsersService {
+	public NaverLoginUser getProfile(String accessToken);
+	
 	public List<Users> getAllUsers()throws SQLException ; 
 	public boolean update(Users product);
 	public Users getById(Integer id) throws SQLException;
+	public Users getSimpleInfoById(Integer id)throws SQLException;
 	public Users create(NaverLoginUser nLoginUser) throws SQLException;
 	public Users update(NaverLoginUser nLoginUser) throws SQLException;;
 

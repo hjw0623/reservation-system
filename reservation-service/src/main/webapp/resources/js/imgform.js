@@ -4,21 +4,16 @@
 */
 (function (){
 	var getProductList = '/bottom/all';
-//	console.log($('#product-List'));
 	var num = 1;
-//	var prev = num-1;
 	function getProductListAll(getListUrl){
 
 		$.ajax({
 			method:"GET",
 			url : getListUrl,
 			success: function(data){
-			//	console.log(data[0]);
-				
+			//	console.log(data[0]);			
 				var idx =0;
 				var select = $('#product-List');
-			//	select.append('<option>1</option>');
-			//	console.log(select);
 				$.each(data, function(){
 					var item = '<option value="'+data[idx].id+'"'+'productName="'+data[idx].name+'">'+data[idx].description+'</option>';
 					select.append(item);

@@ -159,6 +159,4 @@ public class ProductDetailController {
 			return commentList; //null
 		}
 	}
-	
-	
 }

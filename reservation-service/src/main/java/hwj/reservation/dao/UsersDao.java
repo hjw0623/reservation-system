@@ -61,9 +61,17 @@ public class UsersDao {
 			return user;
 		}catch(Exception e){
 			return null;
-
 		}
-	
+	}
+	public Users selectSimpleUserById(Integer id){
+		Map<String, Object> params =new HashMap<>();
+		params.put("id", id);
+		try{
+			Users user = jdbc.queryForObject(UsersSqls.SELECT_SIMPLE_USER_BY_ID, params, rowMapper );
+			return user;
+		}catch(Exception e){
+			return null;
+		}
 	}
 	public List<Users> selectAllUsers(){
 		Map<String, Object> params = Collections.emptyMap();

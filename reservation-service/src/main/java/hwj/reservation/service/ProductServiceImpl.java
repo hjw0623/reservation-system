@@ -23,7 +23,6 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	ProductDao dao;
 
-	
 	public ProductServiceImpl(ProductDao dao ){
 		this.dao = dao;
 	}

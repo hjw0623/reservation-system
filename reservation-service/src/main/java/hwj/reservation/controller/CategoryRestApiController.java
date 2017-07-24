@@ -71,8 +71,4 @@ public class CategoryRestApiController {
 			log.info("category updated");
 		}
 	}
-	
-	
-	
-	
 }

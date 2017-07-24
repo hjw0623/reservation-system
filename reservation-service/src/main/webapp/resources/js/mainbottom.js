@@ -88,9 +88,7 @@ var categoryProductList = (function (spec, cId, number){
 				//console.log("scroll");
 				categoryProductList.getProductListByCategory(spec2.getPlistUrl, categoryId, num); 
 			}
-		}),
-		
-		
+		}),	
 	}
 })(spec2);
 

@@ -29,7 +29,7 @@ public interface ProductService {
 	public ProductDTO getById(Integer id) throws SQLException;
 	
 	//productDetail
-	public ProductDetailDTO getProductDetailById(Integer id)throws SQLException;
+	public ProductDetailDTO getProductDetailById(Integer productId)throws SQLException;
 	//displayInfo
-	public DisplayInfoDTO getDisplayInfoById(Integer id)throws SQLException;
+	public DisplayInfoDTO getDisplayInfoById(Integer productId)throws SQLException;
 }

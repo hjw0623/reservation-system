@@ -20,11 +20,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
 public class LoginUtils {
-	//1.난수 state 생
+	//1.난수 state 생성 
 	public static String generateState(){
 		SecureRandom random = new SecureRandom();
 		return new BigInteger(130, random).toString(32); //state
-
 	}
 	public static Map<String, Object> JSONStringToMap(String str){
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -89,7 +88,7 @@ public class LoginUtils {
 	    return sb.toString();
 	}
 
-
+	/*
 	public static String getProfile(String accessToken){
 		String profile="";
 		String header="Bearer "+accessToken;
@@ -123,4 +122,5 @@ public class LoginUtils {
 	        }	
 		return profile;
 	}
+	*/
 }

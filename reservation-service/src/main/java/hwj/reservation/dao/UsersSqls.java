@@ -6,7 +6,8 @@ public class UsersSqls {
 	
 	public static final String SELECT_USER_BY_ID=" SELECT id, username, email, tel, nickname, admin_flag, create_date, modify_date "
 			+ " FROM USERS WHERE id =:id";
-	
+	public static final String SELECT_SIMPLE_USER_BY_ID=" SELECT id, username, email,  nickname "
+			+ " FROM USERS WHERE id =:id";
 	public static final String SELECT_ALL_USERS ="SELECT id, username, email, tel, nickname, admin_flag, create_date, modify_date "
 			+ " FROM USERS ";
 	

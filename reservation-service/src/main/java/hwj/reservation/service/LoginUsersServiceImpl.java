@@ -4,12 +4,19 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import hwj.reservation.dao.ResUserCommentDao;
 import hwj.reservation.dao.ResUserCommentImageDao;
 import hwj.reservation.dao.UsersDao;
 import hwj.reservation.domain.NaverLoginUser;
+import hwj.reservation.domain.NaverLoginUserResult;
 import hwj.reservation.domain.Users;
 
 @Service
@@ -22,8 +29,7 @@ public class LoginUsersServiceImpl implements LoginUsersService {
 	}
 	@Override
 	public List<Users> getAllUsers() throws SQLException {
-
-
+		List<Users> userList = dao.selectAllUsers();
 		return null;
 	}
 	//내부 업데이트 
@@ -34,11 +40,15 @@ public class LoginUsersServiceImpl implements LoginUsersService {
 
 	@Override
 	public Users getById(Integer id) throws SQLException {
-	
 		Users user = dao.selectById(id);
-	
 		return user;
 	}
+	@Override
+	public Users getSimpleInfoById(Integer id) throws SQLException {
+		Users user = dao.selectSimpleUserById(id);
+		return user;
+	}
+
 
 	@Override
 	public Users create(NaverLoginUser naverLoginUser) throws SQLException {
@@ -65,5 +75,27 @@ public class LoginUsersServiceImpl implements LoginUsersService {
 			return found;
 		}
 	}
+	
+	
+	@Override
+	public NaverLoginUser getProfile(String accessToken) {
+		HttpHeaders header = new HttpHeaders();
+		header.add("Authorization", "Bearer "+ accessToken);
+		String apiURL = "https://openapi.naver.com/v1/nid/me";
+		//RestTemplate
+		RestTemplate restTemplate = new RestTemplate();
+		HttpEntity httpEntity = new HttpEntity(header);
+		try{
+			ResponseEntity<NaverLoginUserResult> responseEntity 
+				=  restTemplate.exchange( //getForObject
+								apiURL, HttpMethod.GET, httpEntity, new ParameterizedTypeReference<NaverLoginUserResult>(){			
+			});
+			NaverLoginUser response = responseEntity.getBody().getResponse();
+			return response;
 
+		} catch(Exception e){
+			return null;
+		}
+	}
+	
 }
