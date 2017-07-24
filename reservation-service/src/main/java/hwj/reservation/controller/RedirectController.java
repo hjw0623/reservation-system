@@ -24,6 +24,10 @@ public class RedirectController {
 		 return "/detaildefault";
 	}	
 	
+	@GetMapping("/test")
+	public String loadTestPage( ){
+		 return "/test";
+	}
 	//@GetMapping("/booking/bizes/{id}/item/{detailId}")
 	
 	
